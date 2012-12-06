@@ -1,0 +1,62 @@
+<?xml version="1.0"?> 
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:em="http://www.mozilla.org/2004/em-rdf#"> 
+
+    <Description about="urn:mozilla:install-manifest"> 
+        <!-- 指出扩展的ID。该ID应该是一个Email格式的字符串，或者是一个GUID。注意，使用Email的作用是保证该ID的唯一性，并不要求这个Email地址是有效的。必填。 --> 
+        <em:id>wizbrother@wiz.cn</em:id> 
+        <!-- 指出插件的版本号。必填。 --> 
+        <em:version>1.0.9</em:version> 
+        <!-- 在这里的值必须是2。该标签说明该应用的Firefox扩展，而不是其他XUL应用程序。Firefox插件的代码是2，如果是Firefox主题则会是4。必填。 --> 
+        <em:type>2</em:type> 
+        
+        <!-- 安装扩展的目标应用程序以及最高版本和最低版本。必填。 --> 
+        <em:targetApplication> 
+            <Description> 
+                <!-- Firefox的ID，这个值不能改变。必填。 --> 
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+  <!-- 指明能使用该扩展的Firefox最低版本。这里是指1.5。必填。 --> 
+                <em:minVersion>4.0b1</em:minVersion> 
+  <!-- 指明能使用该扩展的Firefox最高版本。这里是指3.0.x。结合minVersion，即是说本扩展只适用于1.5和3.0.x之间的版本。必填。 --> 
+                <em:maxVersion>15.0a1</em:maxVersion> 
+            </Description> 
+        </em:targetApplication> 
+        
+        <em:localized>
+            <Description>
+                <em:locale>en-US</em:locale>
+                <em:name>Wiznote Web Clipper</em:name> 
+                <em:description>Provides a button and context menus to easily add a selection or an entire page to Wiz</em:description> 
+                <em:creator>Wiz corp.</em:creator> 
+            </Description>
+        </em:localized>
+
+        <em:localized>
+            <Description>
+                <em:locale>zh-CN</em:locale>
+                <em:name>Wiznote Web Clipper</em:name> 
+                <em:description>提供按钮和上下文菜单，以便将选择内容和整个页面保存为知笔记</em:description> 
+                <em:creator>Wiz corp.</em:creator> 
+            </Description>
+        </em:localized>
+
+        <em:localized>
+            <Description>
+                <em:locale>zh-TW</em:locale>
+                <em:name>Wiznote Web Clipper</em:name> 
+                <em:description>提供按鈕和上下文菜單，以便將選擇內容和整個頁面保存為知筆記</em:description> 
+                <em:creator>Wiz corp.</em:creator> 
+            </Description>
+        </em:localized>
+
+
+        <!-- 扩展主页的URL。选填。 --> 
+        <em:name>Wiznote Web Clipper</em:name> 
+        <em:homepageURL>http://www.wiz.cn/</em:homepageURL> 
+        <em:iconURL>chrome://wiznote-webclipper/skin/images/logo/wiz48.png</em:iconURL>
+        <em:aboutURL>chrome://wiznote-webclipper/content/about.xul</em:aboutURL>
+        <!-- New in Gecko 2 (Firefox 4): unpacking is required for XPCOM binary components -->
+        <em:unpack>true</em:unpack>
+    </Description>             
+</RDF>

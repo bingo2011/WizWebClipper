@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<panel id="webclipperPopup" title="title" orient="vertical" autostretch="always"
+       buttons=","
+       defaultButton=","
+       shadow="true"
+       style="padding: 0px; margin: 0px; height: 32px; -moz-window-shadow : sheet"
+       onload="init();"
+       xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="text/javascript">
+    <![CDATA[
+
+        function init() {
+            window.frames[0].overlay = window;
+            window.frames[0].overlayContentContainer = document.getElementById( "popupContent" );
+        }
+
+    ]]>
+  </script>
+    <iframe src="chrome://wiznote-webclipper/content/FFPopup.html?v=1.0.0.0" type="content"
+            style="-moz-box-shadow: 6px 6px 12px #888; box-shadow:3px 3px 5px #888; background-color: white; -moz-window-shadow : default; width: 520px; height: 300px; padding: 0px; margin: 5px; "
+            id="popupContent"/>
+</panel>

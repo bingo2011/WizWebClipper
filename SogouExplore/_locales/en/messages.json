@@ -1,0 +1,181 @@
+{
+	"actionName": {
+		"message": "WizNote Web Clipper"
+	},
+	"extName": {
+		"message": "WizNote Web Clipper"
+	},
+	"description": {
+		"message": "The extension “Wiz Note” can help you to save the web content or the whole website in your own account."
+	},
+	"popup_wating": {
+		"message": "Waiting page..."
+	},
+	"user_id_tip": {
+		"message": "Account: "
+	},
+	"user_id_help": {
+		"message": "(email or mobile)"
+	},
+	"userid_error": {
+		"message": "Invalid user name"
+	},
+	"password_tip": {
+		"message": "Password: "
+	},
+	"keep_password_tip": {
+		"message": "Remember me"
+	},
+	"login_msg": {
+		"message": "   Sign in   "
+	},
+	"note_title_tip": {
+		"message": "Title: "
+	},
+	"category_tip": {
+		"message": "Folder: "
+	},
+	"tag_tip": {
+		"message": "Tags: "
+	},
+	"tag_input": {
+		"message": "Input tag: "
+	},
+	"note_submit": {
+		"message": "   Commit   "
+	},
+	"logining": {
+		"message": "Logining"
+	},
+	"article_save": {
+		"message": "Save Article"
+	},
+	"fullpage_save": {
+		"message": "Save Full Page"
+	},
+	"select_save": {
+		"message": "Save Selected"
+	},
+	"url_save": {
+		"message": "Save URL"
+	},
+	"network_wrong" : {
+		"message" : "Network is not available. Please try again after checking"
+	},
+	"add_tag" : {
+		"message" : "Add tag"
+	},
+	"comment_tip" : {
+		"message" : "Comment: "
+	},
+	"password_error" : {
+		"message" : "Invalid Password"
+	},
+	"add_comment" : {
+		"message" : "Add comment"
+	},
+	"MyNotes": {
+		"message": "My Notes"
+	},
+	"MyMobiles": {
+		"message": "My Mobiles"
+	},
+	"MyDrafts": {
+		"message": "My Drafts"
+	},
+	"MyJournals" : {
+		"message" : "My Journals"
+	},
+	"MyEvents" : {
+		"message" : "My Events"
+	},
+	"MyContacts" : {
+		"message" : "My Contacts"
+	},
+	"MyTasks" : {
+		"message" : "My Tasks"
+	},
+	"DeletedItems" : {
+		"message" : "Deleted Items"
+	},
+	"MyStickyNotes" : {
+		"message" : "My Sticky Notes"
+	},
+	"Inbox": {
+		"message" : "Inbox"
+	},
+	"Completed" : {
+		"message" : "Completed"
+	},
+	"MyPhotos" : {
+		"message" : "My Photos"
+	},
+	"MyEmails": {
+		"message" : "My Emails"
+	},
+	"logout": {
+		"message" : "Sign out"
+	},
+	"clipResult_clipping" : {
+		"message" : "Clipping"
+	},
+	"clipResult_sync" : {
+		"message" : "Syncing"
+	},
+	"clipResult_success": {
+		"message" : "Clipped"
+	},
+	"clipResult_error": {
+		"message" : "Save Error"
+	}, 
+	"AuthenticationFailure" : {
+		"message" : "Before you clip the page. Please sign in using the toolbar button, and try again. "
+	},
+	"contextMenus_clipPage" : {
+		"message" : "Save To WizNote"
+	},
+	"contextMenus_clipSelection": {
+		"message" : "Clip Selection"
+	},
+	"contextMenus_clipUrl": {
+		"message" : "Clip URL"
+	},
+	"create_account_link": {
+		"message" : "Create WizNote Account"
+	},
+	"pageClipFailure": {
+		"message" : "Can not clip this page"
+	},
+	"category_loading": {
+		"message" : "Loading category,please wait"
+	},
+	"retry_clip_button" : {
+		"message" : "Retry"
+	},
+	"save_to_native" : {
+		"message" : "Save to PC Client"
+	},
+	"save_to_server" : {
+		"message" : "Save to Server"
+	},
+	"save_more" : {
+		"message" : "More"
+	},
+	"contentPreview_clipArticle": {
+		"message": "clip article"
+	},
+	"contentPreview_expandSelection": {
+		"message": "expand selection"
+	},
+	"contentPreview_moveSelection": {
+		"message": "move selection"
+	},
+	"contentPreview_shrinkSelection": {
+		"message": "shrink selection"
+	},
+	"install_client_notify": {
+		"message": "The feature need to install the latest version of the wiz client, whether to jump to the download page?"
+	}
+}
+
+

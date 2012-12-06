@@ -1,0 +1,4 @@
+<!ENTITY add_to_wiznote "Add to Wiznote">
+<!ENTITY add_to_wiznote_tooltip "Add selected text or entire page to Wiznote as new note">
+
+<!ENTITY contextMenu_clip_this_page "Save To WizNote">

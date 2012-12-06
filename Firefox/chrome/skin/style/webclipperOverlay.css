@@ -1,0 +1,13 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+.webclipper-toolbar-button, .webclipper-contextMenu-item {
+	list-style-image:url(chrome://wiznote-webclipper/skin/images/logo/wiz16.png);
+}
+
+
+toolbar[iconsize="small"] .webclipper-toolbar-button {
+	list-style-image: url(chrome://wiznote-webclipper/skin/images/logo/wiz16.png);
+}
+
+#BrowserToolbarPalette {
+	padding: 10px;
+}

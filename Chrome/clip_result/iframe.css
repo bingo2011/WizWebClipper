@@ -1,0 +1,32 @@
+/* These are styles for the iframe itself, as it's embedded in the containing document. */
+#wizClipperResult {
+  z-index: 2147483647;
+  border: 0;
+  top: 12px;
+  right: 12px;
+  width: 466px;
+  max-height: 200px;
+  border: 0;
+  position: fixed;
+}
+
+#wizClipperResult {
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-name: fadein;
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#wizClipperResult.hide {
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-name: fadeout;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeout {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

@@ -1,0 +1,4 @@
+<!ENTITY add_to_wiznote "添加至为知笔记">
+<!ENTITY add_to_wiznote_tooltip "将选定文本或整个页面作为新笔记添加至为知笔记">
+
+<!ENTITY contextMenu_clip_this_page "保存到为知笔记">

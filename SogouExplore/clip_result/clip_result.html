@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Related Notes</title>
+		<script type="text/javascript" src="../scripts/wiz/Browser.js"></script>
+		<script type="text/javascript" src="../scripts/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="../scripts/lib/xmlrpc.js"></script>
+		<link rel="stylesheet" type="text/css" href="clip_result.css" />
+		<link rel="stylesheet" type="text/css" href="small_snippet.css" />
+	</head>
+	<body>
+		<div>
+			<div id="main">
+				<div id="status">
+					<div id="clippingIcon" class="notificationIcon" style="display: none;">
+						<img src="../../images/scissors.png"/>
+					</div>
+					<div id="activeIcon" class="notificationIcon" style="display: none;">
+						<img src="../../images/sync.png"/>
+					</div>
+					<div id="successIcon" class="notificationIcon" style="display: none;">
+						<img src="../../images/check.png"/>
+					</div>
+					<div id="errorIcon" class="notificationIcon" style="display: none;">
+						<img src="../../images/warning.png"/>
+					</div>
+					<div id="notificationMessage" class="notificationMessage">
+						<div id="notificationHeadline" class="notificationHeadline"></div>
+						<div id="notificationDetails" class="notificationDetails"></div>
+						<div id="errorActions" style="display: none;">
+							<br />
+							<span id="retryClip" class="fakeLink"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

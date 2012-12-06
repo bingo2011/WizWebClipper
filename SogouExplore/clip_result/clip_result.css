@@ -1,0 +1,518 @@
+html{
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+body {
+  margin: 0;
+}
+
+body > div{ 
+  padding: 6px;
+  -webkit-border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.56);
+}
+
+/* Safari 5.1 improperly draws borders on empty divs. */
+body > div#_clearly_component__next_pages_container {
+  -webkit-border-radius: 0px;
+  padding: 0px;
+  border: 0;
+}
+
+#main {
+  -webkit-border-radius: 4px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* The containing block around each related note. */
+.noteBlock {
+  cursor: pointer;
+  display: inline-block;
+  background-color: white;
+  color: black;
+  vertical-align: top;
+  overflow: hidden;
+  border: 1px solid rgb(13%, 13%, 11%);
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.33);
+  text-align: left;
+}
+
+/* */
+#relatedNotesContainer, #siteNotesContainer {
+  height: 188px;
+  width: 50%;
+  display: inline-block;
+  background-color: #333;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#slider {
+  width: 200%;
+  height: 204px;
+  position: relative; /* For positioned children. */
+}
+#slider.showLeft {
+margin-left: 0;
+}
+#slider.showRight {
+margin-left: -100%;
+}
+
+#slider.showRight {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: slideRight;
+}
+
+@-webkit-keyframes slideRight {
+  0% { margin-left: 0; }
+  100% { margin-left: -100%; }
+}
+
+#slider.showLeft {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: slideLeft;
+}
+
+@-webkit-keyframes slideLeft {
+  0% { margin-left: -100%; }
+  100% { margin-left: 0; }
+}
+
+.notesGradient, .notesGradientTop {
+  width: 50%;
+  height: 8px;
+  position: absolute;
+  bottom: 0;
+  background-image: url(../../images/split-shadow.png);
+}
+
+.notesGradientTop {
+  height: 8px;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  -webkit-transform: scaleY(-1);
+}
+
+/* This should match for the 'site notes' but not the 'related notes'. */
+.notesGradientTop:nth-last-child(2) {
+  right: 0;
+}
+
+/* This should match for the 'site notes' but not the 'related notes'. */
+.notesGradient:last-child {
+  right: 0;
+}
+
+/* The container around the notes. */
+#relatedNotesScrollable {
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 204px;
+  position: relative;
+  overflow: hidden;
+}
+
+#relatedNotesScrollable table {
+  width: 100%;
+  border-spacing: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#relatedNotesScrollable table td {
+  padding: 0;
+  padding-top: 5px;
+  min-width: 136px;
+}
+
+#relatedNotesScrollable table td:nth-child(3n+1) {
+}
+
+#relatedNotesScrollable table td:nth-child(3n+2) {
+  text-align: center;
+}
+
+#relatedNotesScrollable table td:nth-child(3n+3) {
+  text-align: right;
+}
+
+#relatedNotesScrollable table tr {
+}
+
+#relatedNotesScrollable table tr:nth-child(1) td {
+  padding-top: 0;
+}
+
+#relatedNotes {
+  width: 100%;
+  opacity: 0;
+  height: 0;
+  background-color: #333;
+  position: relative; /* For positioned children. */
+}
+
+#relatedNotes.expanded {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: expand;
+  opacity: 1;
+  height: 264px;
+}
+
+@-webkit-keyframes expand {
+  0% { height: 0; opacity: 0; }
+  25% { opacity: 0; }
+  75% { height: 264px; }
+  100% { opacity: 1; }
+}
+
+#relatedNotes.contracted {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: contract;
+}
+
+#relatedNotesHeader {
+  height: 56px;
+  padding: 6px 8px;
+  padding-bottom: 0;
+  /* So, when Chrome performs CSS animations, it first siwtches *off* sub-pixel rendering for perforance reasons.
+   * When the animation completes, it then switches sub-pixel rendering back *on*. This causes a noticable "jump" on
+   * the rendering of the text (especially with OS X's sub-pixel rendering method) that makes the text look bolder.
+   * To avoid this jump, we explicitly disable sub-pixel rendering on certain page elements where this effect is
+   * obvious, like the title and footer. Also, this prperty apparently doesn't inherit like you'd think, so it's
+   * scattered around applied to various elements on the page. */
+  -webkit-font-smoothing: antialiased;
+}
+
+#youHaveRelatedNotes {
+  color: #CCC;
+  margin-bottom: 6px;
+}
+
+/* The site search/related notes buttons.*/
+#relatedNotesButton, #siteSearchButton {
+  cursor: pointer;
+  display: inline-block;
+
+  padding: 6px 12px;
+  color: white;
+  -webkit-border-radius: 5px;
+  border: 1px inset #444;
+  background-color: rgb(16%, 16%, 16%);
+  font-size: 12px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(25%, 25%, 25%)), to(rgb(10%, 10%, 10%)));
+  -webkit-box-shadow: 0 1px 0px 0px rgba(100%, 100%, 100%, 0.20);
+}
+#relatedNotesButton {
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-right-color: black;
+}
+#siteSearchButton {
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-left-width: 0;
+
+  /* To handle overflowing domain names.*/
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#relatedNotesButton:hover, #siteSearchButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#4c4b4a), to(#161513));
+}
+
+/* The selected version of the site search/related notes buttons. */
+#relatedNotesButton.selected, #siteSearchButton.selected {
+  background: -webkit-gradient(linear, center top, center bottom, from(#201f1d), color-stop(65%, #3c3b38), to(#201f1d));
+  -webkit-box-shadow: 0 1px 0px 0px rgba(100%, 100%, 100%, 0.20), inset -1px 0 0 rgba(100%, 100%, 100%, 0.1);
+}
+#siteSearchButton.selected {
+  -webkit-box-shadow: 0 1px 0px 0px rgba(100%, 100%, 100%, 0.20), inset 1px 0 0 rgba(100%, 100%, 100%, 0.1);
+}
+
+#siteSearchButton.disabled, #relatedNotesButton.disabled {
+  color: gray;
+}
+#siteSearchButton.disabled:hover, #relatedNotesButton.disabled:hover {
+  /* Same as the default state gradient, to override the standard hover state. */
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(25%, 25%, 25%)), to(rgb(10%, 10%, 10%)));
+}
+
+@-webkit-keyframes contract {
+  0% { height: 264px; opacity: 1; }
+  25% { height: 264px; }
+  75% { opacity: 0; }
+  100% { height: 0; }
+}
+
+/* The main container for the status notification area. */
+#status {
+  margin: 6px;
+  padding: 6px;
+  background-color: #262626;
+  -webkit-border-radius: 4px;
+  border: 1px inset #444;
+  font-size: 12px;
+  line-height: 18px;
+  /* See comment in #relatedNotesHeader for explanation of the following line. */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* the view/edit/cancel/retry links. */
+#status .fakeLink, #status a, .moreOnServer {
+  color: rgb(67%, 88%, 91%);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+/* The text that appears after the first 30 matching site notes. */
+.moreOnServer {
+  text-align: center;
+  padding: 11px;
+  padding-bottom: 6px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#status .fakeLink:hover, #status a:hover, .moreOnServer:hover {
+  text-decoration: underline;
+}
+
+/* The bullets that go between the view/edit and cancel/retry links. */
+.separator {
+  color: rgb(46%, 46%, 46%);
+  padding: 0px 3px;
+}
+
+/* The icons that sit to the left of the main status message .*/
+#successIcon, #errorIcon, #activeIcon, #clippingIcon {
+  vertical-align: top;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  margin-right: 6px;
+  text-align: center;
+}
+
+#successIcon, #errorIcon {
+  padding-top: 2px;
+}
+
+#activeIcon > img {
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-duration: 1500ms;
+  -webkit-animation-name: iconSpin;
+  -webkit-transform: rotate(360deg);
+}
+
+@-webkit-keyframes iconSpin {
+  0% { -webkit-transform: rotate(360deg) }
+  100% { -webkit-transform: rotate(0deg) }
+}
+
+/* The links to view/edit or retry/cancel in thier hidden state. */
+#successActions, #errorActions {
+  opacity: 0;
+  height: 0;
+}
+
+/* The links to view/edit or retry/cancel in thier expanded state. */
+#successActions, #errorActions {
+  opacity: 1;
+  height: 18px;
+  -webkit-animation-duration: 500ms;
+  -webkit-animation-name: actionExpand;
+}
+
+@-webkit-keyframes actionExpand {
+  0% { opacity: 0; height: 0; }
+  100% { opacity: 1; height: 18px; }
+}
+
+/* The box containing the message that indicates success or failure. */
+#notificationMessage {
+  font-size: 14px;
+  display: inline-block;
+  max-width: 380px; /* Keeps this from falling onto a new line after the icon if the satatus message is long. */
+  margin: 2px 0px;
+}
+
+/* The footer controls for hiding related notes. */
+#footer {
+  margin: 0;
+  height: 0;
+  opacity: 0;
+  position: relative;
+  /* See comment in #relatedNotesHeader for explanation of the following line. */
+  -webkit-font-smoothing: antialiased;
+}
+
+#footer.expanded {
+  -webkit-animation-duration: 500ms;
+  -webkit-animation-name: footerExpand;
+  margin: 8px;
+  margin-top: 4px;
+  height: 32px;
+  opacity: 1;
+}
+@-webkit-keyframes footerExpand {
+  0% { opacity: 0; height: 0; margin: 0; }
+  100% { opacity: 1; height: 32px; margin: 8px;  margin-top: 4px;}
+}
+
+/* The container for the checkbox to hide the related notes area in the future. */
+#hideRelated {
+  font-size: 10px;
+  color: #CCC;
+  position: absolute;
+  bottom: 8px;
+  left: 2px;
+}
+
+/* The arrow icon next to the show/hide link. */
+#hideRelated img, #hideRelated img.unreversing {
+  -webkit-trarightnsform: rotate(0deg);
+  position: relative;
+  bottom: 1px;
+}
+
+#hideRelated img.unreversing {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: arrowUp;
+  -webkit-transform: rotate(0deg);
+}
+
+@-webkit-keyframes arrowUp {
+  0% { -webkit-transform: rotate(180deg) }
+  100% { -webkit-transform: rotate(0deg) }
+}
+
+/* The opposite version of said arrow icon. */
+#hideRelated img.reversed, #hideRelated img.reversing {
+  -webkit-transform: rotate(180deg);
+}
+
+#hideRelated img.reversing {
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-name: arrowDown;
+  -webkit-transform: rotate(180deg);
+}
+
+@-webkit-keyframes arrowDown {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(180deg); }
+}
+
+#hideRelatedControl {
+  padding-left: 4px;
+}
+
+#hideRelated:hover {
+  cursor: pointer;
+  /* text-decoration: underline; Disabled cause it fails to turn off as the control moves out from under the cursor.*/
+}
+
+/* The container for the close button. */
+#closeControl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#closeControl > input {
+  padding: 6px 12px;
+  color: white;
+  -webkit-border-radius: 5px;
+  border: 1px inset #444;
+  background-color: rgb(16%, 16%, 16%);
+  font-size: 12px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(25%, 25%, 25%)), to(rgb(10%, 10%, 10%)));
+  -webkit-box-shadow: 0 1px 0px 0px rgba(100%, 100%, 100%, 0.20);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The button that dismisses the results overlay. */
+#closeResultControl {
+  margin: 0;
+}
+
+#closeResultControl:hover {
+  cursor:pointer;
+}
+
+/* Essentially a copy of the same thing from popup.css. */
+.newFeatureOverlay {
+  position: absolute;
+  z-index: 450 !important;
+  top: 59px;
+  left: 4px;
+  -webkit-border-radius: 3px;
+  border: 2px solid white;
+  width: 360px;
+  padding: 10px;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  background-color: rgb(95%, 95%, 96%);
+  font-size: 13px;
+  line-height: 16px;
+  color: #3b3b3b;
+}
+
+.newFeatureOverlay > h1 {
+  font-weight: bold;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2px;
+}
+
+.newFeatureDismissControl {
+  float: right;
+  position: relative;
+  top: -6px;
+  left: 6px;
+  width: 9px;
+  height: 9px;
+  background-image: url(../../images/new_feature_dismiss_dark.png);
+}
+
+/* 'dismiss' X icon. */
+.newFeatureDismissControl:hover {
+  background-image: url(../../images/new_feature_dismiss_dark_hover.png);
+  cursor: pointer;
+}
+
+.newFeatureOverlay span::first-line {
+  line-height: 18px;
+}
+
+.newFeatureOverlay img {
+  position: absolute;
+  top: -11px;
+  left: 40px;
+}
+
+.newFeatureOverlay.hidden {
+  -webkit-animation-duration: 350ms;
+  -webkit-animation-name: hideFeatureOverlay;
+  opacity: 0;
+}
+@-webkit-keyframes hideFeatureOverlay {
+  0% { opacity: 1; }
+  100% { opacity: 0; display: none;}
+}
+
+

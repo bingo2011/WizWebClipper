@@ -1,0 +1,179 @@
+{
+   "AuthenticationFailure": {
+      "message": "\u5728\u60a8\u5132\u5b58\u8a72\u9801\u9762\u4e4b\u524d\uff0c\u8acb\u5148\u6309\u4e00\u4e0b [\u5132\u5b58\u5230 wiz] \u5de5\u5177\u5217\u6309\u9215\u767b\u9304"
+   },
+   "Completed": {
+      "message": "\u5df2\u5b8c\u6210"
+   },
+   "DeletedItems": {
+      "message": "\u5df2\u522a\u9664"
+   },
+   "Inbox": {
+      "message": "\u6536\u96c6\u7bb1"
+   },
+   "MyContacts": {
+      "message": "\u6211\u7684\u806f\u7d61\u4eba"
+   },
+   "MyDrafts": {
+      "message": "\u6211\u7684\u8349\u7a3f"
+   },
+   "MyEmails": {
+      "message": "\u6211\u7684\u90f5\u4ef6"
+   },
+   "MyEvents": {
+      "message": "\u6211\u7684\u4e8b\u4ef6"
+   },
+   "MyJournals": {
+      "message": "\u6211\u7684\u65e5\u8a18"
+   },
+   "MyMobiles": {
+      "message": "\u6211\u7684\u624b\u6a5f"
+   },
+   "MyNotes": {
+      "message": "\u6211\u7684\u7b46\u8a18"
+   },
+   "MyPhotos": {
+      "message": "\u6211\u7684\u7167\u7247"
+   },
+   "MyStickyNotes": {
+      "message": "\u6211\u7684\u684c\u9762\u7b46\u8a18"
+   },
+   "MyTasks": {
+      "message": "\u6211\u7684\u4efb\u52d9"
+   },
+   "actionName": {
+      "message": "\u70ba\u77e5\u7b46\u8a18\u7db2\u9801\u5132\u5b58\u5668"
+   },
+   "add_comment": {
+      "message": "\u52a0\u5165\u8a55\u8ad6"
+   },
+   "add_tag": {
+      "message": "\u8f38\u5165\u6a19\u7c64"
+   },
+   "article_save": {
+      "message": "\u5132\u5b58\u6587\u7ae0"
+   },
+   "category_loading": {
+      "message": "\u8f09\u5165\u4e2d\uff0c\u8acb\u7a0d\u5f8c"
+   },
+   "category_tip": {
+      "message": "\u8cc7\u6599\u593e: "
+   },
+   "clipResult_clipping": {
+      "message": "\u6b63\u5728\u5132\u5b58"
+   },
+   "clipResult_error": {
+      "message": "\u5132\u5b58\u5931\u6557"
+   },
+   "clipResult_success": {
+      "message": "\u5df2\u5132\u5b58"
+   },
+   "clipResult_sync": {
+      "message": "\u6b63\u5728\u540c\u6b65"
+   },
+   "comment_tip": {
+      "message": "\u8a55\u8ad6: "
+   },
+   "contentPreview_clipArticle": {
+      "message": "\u5132\u5b58\u6587\u7ae0"
+   },
+   "contentPreview_expandSelection": {
+      "message": "\u5c55\u958b\u9078\u53d6\u9805\u76ee"
+   },
+   "contentPreview_moveSelection": {
+      "message": "\u79fb\u52d5\u9078\u53d6\u9805\u76ee"
+   },
+   "contentPreview_shrinkSelection": {
+      "message": "\u6536\u7e2e\u9078\u53d6\u9805\u76ee"
+   },
+   "contextMenus_clipPage": {
+      "message": "\u5132\u5b58\u5230\u70ba\u77e5\u7b46\u8a18"
+   },
+   "contextMenus_clipSelection": {
+      "message": "\u5132\u5b58\u9078\u64c7"
+   },
+   "contextMenus_clipUrl": {
+      "message": "\u5132\u5b58 URL"
+   },
+   "create_account_link": {
+      "message": "\u5efa\u7acb\u70ba\u77e5\u7b46\u8a18\u5e33\u865f"
+   },
+   "description": {
+      "message": "\u4f7f\u7528\u300c\u70ba\u77e5\u7b46\u8a18\u300d\u64f4\u5145\u7a0b\u5f0f\uff0c\u5c07\u7db2\u8def\u4e0a\u60a8\u9700\u8981\u7684\u5167\u5bb9\u8207\u7db2\u9801\u5132\u5b58\u5230\u60a8\u81ea\u5df1\u7684\u5e33\u6236"
+   },
+   "extName": {
+      "message": "\u70ba\u77e5\u7b46\u8a18\u7db2\u9801\u5132\u5b58\u5668"
+   },
+   "fullpage_save": {
+      "message": "\u5132\u5b58\u6574\u9801"
+   },
+   "install_client_notify": {
+      "message": "\u8a72\u529f\u80fd\u9700\u8981\u5b89\u88dd\u6700\u65b0\u7248\u7684 wiz \u5ba2\u6236\u7aef\uff0c\u662f\u5426\u8df3\u8f49\u5230\u4e0b\u8f09\u9801\u9762\uff1f"
+   },
+   "keep_password_tip": {
+      "message": "\u8a18\u4f4f\u5bc6\u78bc"
+   },
+   "login_msg": {
+      "message": "   \u767b\u9304   "
+   },
+   "logining": {
+      "message": "\u6b63\u5728\u767b\u9304"
+   },
+   "logout": {
+      "message": "\u767b\u51fa"
+   },
+   "network_wrong": {
+      "message": "\u7db2\u8def\u4e0d\u53ef\u7528\uff0c\u8acb\u6aa2\u67e5\u5f8c\u91cd\u8a66"
+   },
+   "note_submit": {
+      "message": "   \u5132\u5b58   "
+   },
+   "note_title_tip": {
+      "message": "\u6a19\u984c: "
+   },
+   "pageClipFailure": {
+      "message": "\u7121\u6cd5\u5132\u5b58\u8a72\u9801\u9762"
+   },
+   "password_error": {
+      "message": "\u5bc6\u78bc\u932f\u8aa4"
+   },
+   "password_tip": {
+      "message": "\u5bc6\u78bc: "
+   },
+   "popup_wating": {
+      "message": "\u7b49\u5f85\u9801\u9762..."
+   },
+   "retry_clip_button": {
+      "message": "\u91cd\u8a66"
+   },
+   "save_more": {
+      "message": "\u66f4\u591a"
+   },
+   "save_to_native": {
+      "message": "\u5132\u5b58\u5230\u672c\u5730"
+   },
+   "save_to_server": {
+      "message": "\u5132\u5b58\u5230\u96f2\u7aef (\u4f3a\u670d\u5668)"
+   },
+   "select_save": {
+      "message": "\u5132\u5b58\u9078\u64c7"
+   },
+   "tag_input": {
+      "message": "\u8f38\u5165\u6a19\u7c64: "
+   },
+   "tag_tip": {
+      "message": "\u6a19\u7c64: "
+   },
+   "url_save": {
+      "message": "\u5132\u5b58 URL"
+   },
+   "user_id_help": {
+      "message": "(Email \u6216\u624b\u6a5f\u865f\u78bc)"
+   },
+   "user_id_tip": {
+      "message": "\u5e33\u865f: "
+   },
+   "userid_error": {
+      "message": "\u4f7f\u7528\u8005\u540d\u7a31\u8f38\u5165\u932f\u8aa4"
+   }
+}

@@ -1,0 +1,138 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+-->
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> -->
+<html>
+	<head>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="popup html for wiz clip">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="scripts/lib/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/lib/zTree/zTreeJs/jquery.ztree.core-3.3.min.js"></script>
+		<script type="text/javascript" src="scripts/wiz/WizObject.js"></script>
+		<script type="text/javascript" src="scripts/wiz/Browser.js"></script>
+		<script type="text/javascript" src="scripts/lib/Cookie.js"></script>
+		<script type="text/javascript" src="scripts/lib/md5.js"></script>
+		<script type="text/javascript" src="scripts/lib/xmlrpc.js"></script>
+		<script type="text/javascript" src="scripts/popup/PopupView.js"></script>
+		<script type="text/javascript" src="scripts/popup/ZtreeController.js"></script>
+		<script type="text/javascript" src="scripts/popup/ClipPageControl.js"></script>
+		<script type="text/javascript" src="scripts/popup/LoginControl.js"></script>
+		<script type="text/javascript" src="scripts/popup/Popup.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/popup/popup.css" />
+		<link rel="stylesheet" type="text/css" href="css/zTreeStyle/zTreeStyle.css" />
+	</head>
+	<body class="popup" id="popup">
+		
+		<!-- head -->
+		<div class="header">
+			<div class="header_logo">
+				<img alt="Wiz" src="images/logo.png"/>
+			</div>
+			<div id="header_user" class="header-links" style="display: block; ">
+				<div id="login_div">
+					<span id="logout_control" tabindex="100"></span>
+					<span id="header_username"></span>
+				</div>
+				<div id="loginoff_div">
+					<span id="create_acount"></span>
+				</div>
+			</div>
+		</div>
+		<div class="waiting" id="waiting">
+			<div id="waiting_div">
+				<br />
+				<label id="waiting-label"></label>
+				<br />
+				<progress indeterminate></progress>
+			</div>
+			<div class="required_error" id="errorpage_tip" style="display: none;">
+				<br />
+				<label></label>
+			</div>
+		</div>
+		
+		<div>
+			
+		</div>
+		<div class="wiz_login" id="wiz_login" style="display: none;">
+			<div class="container">
+				<div class="account_login_div">
+					<div id="div_error_validator" style="color:red"></div>
+					<div>
+						<label id="user_id_tip" for="user_id"></label>
+						<input type="text" name="user_id" size="30" value="" id="user_id">
+						<div>
+							<label id="userid_error_tip" class="required_error" style="display: none;"></label>
+						</div>
+					</div>
+					<div>
+						<label id="password_tip"> </label>
+						<input type="password" name="password" size="30" value="" id="password">
+						<div>
+							<label id="password_error_tip" class="required_error" style="display: none;"></label>
+						</div>
+					</div>
+					<div class="keep_password_div">
+						<input type="checkbox" name="keep_password" id="keep_passoword">
+						<font id="keep_password_tip"></font>
+					</div>
+					<div>
+						<button id="login_button" name="login_button" class="btn btn-primary"></button>
+						<div style="vertical-align: baseline; height:24px; padding-top:1px; display:inline;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wiz_clip_detail" id="wiz_clip_detail" style="display: none;">
+			<div class="container">
+				<div action="#" class="note_info">
+					<div class="note_title_div radius-top">
+						<label for="wiz_note_title" id="note_title_tip"></label>
+						<span>
+							<input type="text" id="wiz_note_title" />
+						</span>
+					</div>
+					<div class="note_category_div">
+						<label for="note-category" id="category_tip"> </label>
+						<span>
+							<label id="category_info" class="category_info"></label>
+						</span>
+						<div id="ztree_container" class="ztree-container" style="display: none;">
+							<div id="ztree" class="ztree"></div>
+						</div>
+						<div id="category_loading" class="category_loading" style="display: none;">
+							<img src="css/zTreeStyle/img/loading.gif"/><label id="category_loading"></label>
+						</div>
+					</div>
+					<div class="note_comment_div radius-bottom">
+						<label for="note-comment" id="comment_tip"></label>
+						<textarea rows="1" class="comment-info" id="comment-info"></textarea>
+					</div>
+				</div>
+				<div>
+					<div class="native-checkd">
+						<select id="save_type_sel" class="save-type">
+							<option id="save_to_server"></option>
+							<option id="save_to_native"></option>
+						</select>
+					</div>
+					<div class="submit-group">
+						<button id="note_submit" class="btn btn-primary submit-button"></button>
+						<select id="submit-type" class="btn btn-primary submit-type">
+							<option id="article" ></option>
+							<option id="selection" ></option>
+							<option id="fullPage" ></option>
+							<option id="url" ></option>
+							<option id="native"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

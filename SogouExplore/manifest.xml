@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<extension> 
+	<id>cn.wiz.wizbrother.clipper</id> 
+	<name>为知笔记网页剪辑器</name> 
+	<show_icon>true</show_icon> 
+	<description>使用“为知笔记”扩展程序，将网络上你需要的内容与网页保存到你自己的帐户</description> 
+	<version>3.0.2</version>
+	<background page="background.html"/>
+
+	<content_scripts> 
+		<content_script core_type="webkit"> 
+			<match>*://*/*</match> 
+			<css>css/contentpreview.css</css>
+			<css>clip_result/iframe.css</css> 
+			<js>scripts/lib/jquery.min.js</js> 
+			<js>scripts/wiz/Message.js</js>
+			<js>scripts/wiz/Browser.js</js> 
+			<js>clip_result/loader.js</js> 
+			<js>scripts/ClientClipper.js</js> 
+			<js>scripts/ContentVeil.js</js> 
+			<js>clip_result/ClipResult.js</js> 
+			<js>scripts/Preview.js</js> 
+			<js>scripts/PageInfo.js</js> 
+			<js>scripts/hatena-extract-content/extract-content-all.js</js> 
+			<js>scripts/GlobalUtils.js</js> 
+		</content_script> 
+ 	</content_scripts>
+
+	<popup page="popup.html" width="500" height="300"/> 
+
+	<request_api_version>1</request_api_version>
+	<author>Wiz Corp.</author>
+</extension> 

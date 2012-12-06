@@ -1,0 +1,124 @@
+.wizContentVeil {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    z-index: 9999999999999990;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    position: "absolute";
+    top: "0px";
+    left: "0px";
+}
+
+.wizPreviewContainer {
+    padding: 10px;
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #696969;
+    z-index: 9999999999999998;
+}
+
+.wizPreviewUrlContainer {
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 50%;
+    white-space: nowrap; overflow : hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.wizPreviewUrlContainer {
+  color: #7ebe40;
+  -webkit-border-radius: 4px; 
+  padding: 8px; 
+  background: white;
+}
+.wizPreviewUrlContainer a,
+.wizPreviewUrlContainer a:active,
+.wizPreviewUrlContainer a:hover,
+.wizPreviewUrlContainer a:visited {
+    color: #7ebe40;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wizPreviewUrlContainer span {
+  display: inline;
+}
+
+#wizPreviewLegend {
+    display: inline-block !important;
+    float: none !important;
+    background: rgba(0,0,0,0.6);
+    padding: 12px;
+    position: fixed;
+    left: 10px;
+    top: -145px;
+    height: 135px;
+    color: white !important;
+    font-family: Helvetica, Arial, sans-serif !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+    text-align: left;
+    margin: 0px;
+    z-index: 9999999999999999;
+    -webkit-border-radius: 4px;
+    -webkit-box-sizing: border-box;
+}
+
+.wizPreviewLegendHidden {
+    -webkit-transform: translatey(-145px) !important;
+    -webkit-transition: -webkit-transform 500ms ease-in !important;
+}
+.wizPreviewLegendVisible {
+    -webkit-transform: translatey(145px) !important;
+    -webkit-transition: -webkit-transform 500ms ease-in !important;
+}
+
+#wizPreviewLegend ul {
+    display: block !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    list-style: none !important;
+    background: none !important;
+    color: white !important;
+}
+
+#wizPreviewLegend ul li {
+    margin: 0px 0px 5px 0px !important;
+    list-style: none !important;
+    background: none !important;
+    color: white !important;
+}
+#wizPreviewLegend ul li:last-of-type {
+    margin-top: 10px !important;
+    color: white !important;
+}
+
+#wizPreviewLegend .keyIcon {
+    display: inline-block !important; 
+    text-align: right !important;
+    vertical-align: middle !important;
+    width: 49px !important;
+    height: 22px !important;
+    padding: 0px !important; 
+    border: none !important;
+    margin-right: 6px !important; 
+}
+#wizPreviewLegend .keyIcon img {
+/*    padding-top: 6px;*/
+    display: inline-block !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    float: none !important;
+}
+
+
+
+
+
