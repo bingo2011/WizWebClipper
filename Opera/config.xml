@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.wiz.cn/webclipper-opera" defaultlocale="en"  version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.wiz.cn/webclipper-opera" version="1.0.0">
 	<name xml:lang="en">WizNote Web Clipper</name>
 	<name xml:lang="zh_CN">为知笔记网页剪辑器</name>
 	<name xml:lang="zh_TW">為知筆記網頁儲存器</name>
 	<description xml:lang="en">The extension “Wiz Note” can help you to save the web content or the whole website in your own account.</description>
-	<description xml:lang="zh_CN">使用“为知笔记”扩展程序，将网络上你需要的内容与网页保存到你自己的帐户</description>
-	<description xml:lang="zh_TW">使用「為知筆記」擴充程式，將網路上您需要的內容與網頁儲存到您自己的帳戶</description>
+	<description xml:lang="zh-cn">使用“为知笔记”扩展程序，将网络上你需要的内容与网页保存到你自己的帐户</description>
+	<description xml:lang="zh-tw">使用「為知筆記」擴充程式，將網路上您需要的內容與網頁儲存到您自己的帳戶</description>
   	<author href="http://www.wiz.cn" email="support@wiz.cn">Wiz Note</author>
   	<icon src="icons/64x64logo.png"/>
 	<access origin="http://webclip.openapi.wiz.cn" subdomains="true" />
