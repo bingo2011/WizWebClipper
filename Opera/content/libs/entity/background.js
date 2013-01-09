@@ -85,11 +85,12 @@ function requestPreview (previewOp, type, info) {
     if (!previewOp) {
         previewOp = 'article';
     }
+    var selectedTab = opera.extension.tabs.getSelected() || opera.extension.tabs.getFocused();
     opera.extension.broadcastMessage({
         'name': 'preview', 
         'op': previewOp, 
         'type': type, 
-        'url': opera.extension.tabs.getSelected().url, 
+        'url': selectedTab.url, 
         'info': info
     });
 }
