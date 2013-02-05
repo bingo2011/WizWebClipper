@@ -199,8 +199,17 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 
 			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
 								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
+
+			
+			$.ajax({
+				type : 'POST',
+				url : 'http://webclip.openapi.wiz.cn/wizkm/a/web/post?',
+				data : requestData,
+				success : callbackSuccess,
+				error : callbackError
+			});
 			// Wiz.logger.debug('postDocument requestData: ' + requestData);
-			ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
+			// ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
 		} catch (err) {
 			Wiz.logger.error('Wiz.Remote.postDocument() Error : ' + err);
 		}

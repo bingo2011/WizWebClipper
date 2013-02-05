@@ -167,6 +167,7 @@ function portLoginAjax(loginParam, port, params, callback) {
 	var loginSuccess = function (responseJSON) {
 		try {
 			Wiz_Context.token = responseJSON.token;
+			Wiz_Context.kbGuid = responseJSON.kb_guid;
 			if (params) {
 				wizPostDocument(params);
 			}
@@ -339,6 +340,17 @@ function wizPostDocument(docInfo) {
 	if (comment && comment.trim() !== '') {
 		body = comment + '<hr>' + body;
 	}
+
+	var requestParam = {
+		client_type : 'webclip_chrome',
+		api_version : 3,
+		document_title: title,
+		document_category: category,
+		document_body: body,
+		token: Wiz_Context.token,
+		kb_guid: Wiz_Context.kbGuid
+	};
+	console.log(requestParam);
 	
 	if (!category) {
 		category = '/My Notes/';
@@ -352,6 +364,7 @@ function wizPostDocument(docInfo) {
 	
 	var callbackSuccess = function (response) {
 		try {
+			console.log('login callbackSuccess');
 			var json = JSON.parse(response);
 			//需要类型转换
 			if (json.return_code != 200) {
@@ -370,6 +383,8 @@ function wizPostDocument(docInfo) {
 	}
 	
 	var callbackError = function (response) {
+			console.log('login callbackError');
+			console.log(response);
 		//TODO 使用闭包，自动重试3次，如果3次均失败，再提示用户
 		//需要重构
 		try {
@@ -385,9 +400,9 @@ function wizPostDocument(docInfo) {
 	};
 	console.log('post document info');
 	$.ajax({
-		type : 'POST',
-		url : 'http://webclip.openapi.wiz.cn/wizkm/a/web/post?',
-		data : requestData,
+		type : 'PUT',
+		url : 'http://www.wiz.cn/api/document/data',
+		data : requestParam,
 		success : callbackSuccess,
 		error : callbackError
 	});

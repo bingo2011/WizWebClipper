@@ -57,7 +57,14 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 			Wiz.background.sendLoginError(error);
 		};
 
-		xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
+		$.ajax({
+			type: 'POST',
+			url: 'http://www.wiz.cn/api/login',
+			data: postParams,
+			success : success,
+			error : callError
+		});
+		// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
 	} catch (err) {
 		console.error('Wiz.Remote.clientLogin() Error : ' + err);
 	}
