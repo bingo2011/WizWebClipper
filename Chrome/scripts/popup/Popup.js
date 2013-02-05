@@ -1,5 +1,5 @@
 // 'use strict';
-var mainUrl = 'http://service.wiz.cn/web';
+var mainUrl = 'http://www.wiz.cn/web';
 window.onload = function() {
 
 	function showByCookies(cookies) {

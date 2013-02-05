@@ -190,8 +190,14 @@ function portLoginAjax(loginParam, port, params, callback) {
 	};
 	//缓存userid
 	Wiz_Context.user_id = loginParam.user_id;
-	console.log('login');
-	xmlrpc(Wiz_Context.xmlUrl, 'accounts.clientLogin', [loginParam], loginSuccess, loginError);
+	$.ajax({
+		type: 'POST',
+		url: 'http://www.wiz.cn/api/login',
+		data: loginParam,
+		success : loginSuccess,
+		error : loginError
+	});
+	// xmlrpc(Wiz_Context.xmlUrl, 'accounts.clientLogin', [loginParam], loginSuccess, loginError);
 }
 
 function wiz_requestCategory(port) {
@@ -285,7 +291,14 @@ function wiz_portRequestCategoryAjax(port) {
 			console.log('wiz_requestCategory callError Error: ' + err);
 		}
 	};
-	xmlrpc(Wiz_Context.xmlUrl, 'category.getAll', [params], callbackSuccess, callbackError);
+	$.ajax({
+		type : 'GET',
+		url : 'http://www.wiz.cn/api/category/all',
+		data : params,
+		success : callbackSuccess,
+		error : callbackError
+	});
+	// xmlrpc(Wiz_Context.xmlUrl, 'category.getAll', [params], callbackSuccess, callbackError);
 }
 
 /**

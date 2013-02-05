@@ -443,7 +443,7 @@ function ClipPageControl() {
 	function initUserLink(token) {
 		var user_id = localStorage['wiz-clip-auth'];
 		$('#header_username').html('(' + user_id + ')').bind('click', function (evt) {
-			window.open(mainUrl + '/?t=' + token);
+			window.open(mainUrl + '?t=' + token);
 		});
 	}
 
