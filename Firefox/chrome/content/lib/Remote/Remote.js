@@ -55,7 +55,15 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 		},
 			callError = callError || function(){};
 
-		xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
+		$.ajax({
+			type: 'POST',
+			url: 'http://www.wiz.cn/api/login',
+			data: postParams,
+			success : success,
+			error : callError
+		});
+		// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
+		// 切换到openapi上
 	} catch (err) {
 		Wiz.logger.error('Wiz.Remote.clientLogin() Error : ' + err);
 	}
@@ -91,7 +99,14 @@ Wiz.Remote.keepAlive = function (callSuccess, callError) {
 		if (token !== null) {
 			var postParams = Wiz.Remote.getPostObj();
 			postParams.token = token;
-			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_KEEPALIVE, [postParams], callSuccess, callError);
+			$.ajax({
+				type: 'POST',
+				url: 'http://www.wiz.cn/api/keepalive',
+				data: postParams,
+				success : callSuccess,
+				error : callError
+			});
+			// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_KEEPALIVE, [postParams], callSuccess, callError);
 		} else {
 			//TODO need to autoLogin
 		}	
@@ -106,7 +121,14 @@ Wiz.Remote.prototype.getAllCategory = function (callSuccess, callError) {
 		if (token !== null) {
 			var postParams = Wiz.Remote.getPostObj();
 			postParams.token = token;
-			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], callSuccess, callError);
+			$.ajax({
+				type: 'POST',
+				url: 'http://www.wiz.cn/api/category/all',
+				data: postParams,
+				success : callSuccess,
+				error : callError
+			});
+			// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], callSuccess, callError);
 		}	
 	} catch (err) {
 		Wiz.logger.error('Wiz.Remote.getAllCategory() Error : ' + err);
@@ -119,7 +141,14 @@ Wiz.Remote.prototype.getAllTag = function (callSuccess, callError) {
 		if (token !== null) {
 			var postParams = Wiz.Remote.getPostObj();
 			postParams.token = token;
-			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllTAGS, [postParams], callSuccess, callError);
+			$.ajax({
+				type: 'POST',
+				url: 'http://www.wiz.cn/api/tag/all',
+				data: postParams,
+				success : callSuccess,
+				error : callError
+			});
+			// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllTAGS, [postParams], callSuccess, callError);
 		}
 	} catch (err) {
 		Wiz.logger.error('Wiz.Remote.getAllTag() Error : ' + err);
