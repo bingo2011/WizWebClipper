@@ -340,72 +340,100 @@ function wizPostDocument(docInfo) {
 	if (comment && comment.trim() !== '') {
 		body = comment + '<hr>' + body;
 	}
-
+	var docGuid = genGuid();
 	var requestParam = {
 		client_type : 'webclip_chrome',
 		api_version : 3,
 		document_title: title,
 		document_category: category,
 		document_body: body,
+		document_guid: docGuid,
 		token: Wiz_Context.token,
-		kb_guid: Wiz_Context.kbGuid
+		kb_guid: Wiz_Context.kbGuid,
+		temp: true
 	};
-	console.log(requestParam);
 	
 	if (!category) {
 		category = '/My Notes/';
 	}
-	
-	var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(Wiz_Context.token).replace(regexp,  '+')
-						+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
+	// var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(Wiz_Context.token).replace(regexp,  '+')
+	// 					+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
 
+
+	var createData = 'temp=true&api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(Wiz_Context.token) + '&kb_guid=' + getReplaceStr(Wiz_Context.kbGuid)
+						+ '&document_guid=' + getReplaceStr(docGuid);
+
+
+	var updateData = 'api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(Wiz_Context.token) + '&kb_guid=' + getReplaceStr(Wiz_Context.kbGuid)
+						+ '&document_guid=' + getReplaceStr(docGuid) + '&document_body=' + getReplaceStr(body) + '&document_category=' + getReplaceStr(category)
+						+ '&document_title=' + title;
 	//发送给当前tab消息，显示剪辑结果					
 	Wiz_Browser.sendRequest(Wiz_Context.tab.id, {name: 'sync', info: docInfo});
 	
 	var callbackSuccess = function (response) {
 		try {
-			console.log('login callbackSuccess');
-			var json = JSON.parse(response);
+			var json = response;
 			//需要类型转换
-			if (json.return_code != 200) {
-				console.error('sendError : ' + json.return_message);
+			if (json.code != 200) {
+				console.error('sendError : ' + json.message);
 				docInfo.errorMsg = json.return_message;
 				
 				Wiz_Browser.sendRequest(Wiz_Context.tab.id, {name: 'error', info: docInfo});
 				return;
 			}
-			console.log('success : saveDocument');
+			console.log('success : create Document');
+			$.ajax({
+				type : 'PUT',
+				url : 'http://www.wiz.cn/api/document/data',
+				data : updateData,
+				success : function() {
+					console.log('success: update Document');
+					Wiz_Browser.sendRequest(Wiz_Context.tab.id, {name: 'saved', info: docInfo});
+				},
+				error : callbackError
+			});
 			
-			Wiz_Browser.sendRequest(Wiz_Context.tab.id, {name: 'saved', info: docInfo});
 		} catch (err) {
 			console.log('wizPostDocument callbackSuccess Error: ' + err);
 		}
 	}
 	
 	var callbackError = function (response) {
-			console.log('login callbackError');
-			console.log(response);
 		//TODO 使用闭包，自动重试3次，如果3次均失败，再提示用户
 		//需要重构
 		try {
-			var errorJSON = JSON.parse(response);
-			docInfo.errorMsg = json.return_message;
+			var errorJSON = response;
+			docInfo.errorMsg = json.message;
 
 			Wiz_Browser.sendRequest(Wiz_Context.tab.id, {name: 'error', info: docInfo});
 
-			console.error('callback error : ' + json.return_message);
+			console.error('callback error : ' + json.message);
 		} catch (err) {
 			console.log('wizPostDocument callbackError Error: ' + err);
 		}
 	};
 	console.log('post document info');
+	console.log(requestParam);
+	// 创建新的空文档
 	$.ajax({
-		type : 'PUT',
+		type : 'POST',
 		url : 'http://www.wiz.cn/api/document/data',
-		data : requestParam,
+		data : createData,
 		success : callbackSuccess,
 		error : callbackError
 	});
+}
+
+function getReplaceStr(str) {
+	var regexp = /%20/g;
+	return encodeURIComponent(str).replace(regexp, '+');
+}
+
+function genGuid() {
+	function S4() {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  }
+  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
 
 function wizRequestPreview(tab, op) {

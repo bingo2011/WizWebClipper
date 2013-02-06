@@ -39,6 +39,7 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 
 				Wiz.saveAuthCookie(username + '*' + password, rememberMe);
 				Wiz.saveTokenCookie(respJson.token);
+				Wiz.context.kb_guid = respJson.kb_guid;
 				//每次登陆成功后，重新写入now_user,方便以后显示或查看
 				Wiz.prefStorage.set(Wiz.Pref.NOW_USER, username, 'char');
 				callSuccess(respJson);
@@ -159,6 +160,7 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 	var token = Wiz.context.token;
 	if (token !== null) {
 		var error = function (err) {
+				alert('err');
 			try {
 				Wiz.logger.debug('Wiz.Remote.postDocument() callerror: ' + err);
 				var respJson = JSON.parse(err);
@@ -178,9 +180,15 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			}
 		},
 			success = function (info) {
+				alert('ok');
 				Wiz.logger.debug('Wiz.Remote.postDocument() callsuccess: ' + info);
 				Wiz.notificator.showClipSuccess(docInfo.title);
 			};
+		function getReplaceStr(str) {
+			var regexp = /%20/g;
+			return encodeURIComponent(str).replace(regexp, '+');
+		}
+
 		try {
 			Wiz.logger.debug('Wiz.Remote.postDocument start token = ' + Wiz.context.token);
 			var regexp = /%20/g,
@@ -199,14 +207,20 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 
 			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
 								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
+			var createData = 'bTemp=true&api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kb_guid )
+								+ '&document_guid=' + getReplaceStr(docGuid);
 
+
+			var updateData = 'api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kb_guid )
+								+ '&document_guid=' + getReplaceStr(docGuid) + '&document_body=' + getReplaceStr(body) + '&document_category=' + getReplaceStr(category)
+								+ '&document_title=' + title;
 			
 			$.ajax({
 				type : 'POST',
-				url : 'http://webclip.openapi.wiz.cn/wizkm/a/web/post?',
-				data : requestData,
-				success : callbackSuccess,
-				error : callbackError
+				url : 'http://www.wiz.cn/api/document/data',
+				data : createData,
+				success : success,
+				error : error
 			});
 			// Wiz.logger.debug('postDocument requestData: ' + requestData);
 			// ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
