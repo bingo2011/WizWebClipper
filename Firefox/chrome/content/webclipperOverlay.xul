@@ -5,6 +5,7 @@
 <!DOCTYPE prefwindow SYSTEM "chrome://wiznote-webclipper/locale/webclipperOverlay.dtd">
 
 <overlay id="webclipperOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="text/javascript" src="chrome://wiznote-webclipper/content/lib/Popup/zTree/js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" src="chrome://wiznote-webclipper/content/lib/Wiz/Wiz.js"/>
   <script type="text/javascript" src="chrome://wiznote-webclipper/content/lib/Wiz/WizContext.js"/>
   <script type="text/javascript" src="chrome://wiznote-webclipper/content/lib/Wiz/I18N.js"/>

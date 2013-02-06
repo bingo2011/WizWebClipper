@@ -10,7 +10,7 @@ Wiz.LoggerManager.WARN_LEVEL = 2;
 Wiz.LoggerManager.ERROR_LEVEL = 3;
 
 //发布之前需要修改
-Wiz.LoggerManager.prototype._level = Wiz.LoggerManager.DEBUG_LEVEL;
+Wiz.LoggerManager.prototype._level = Wiz.LoggerManager.WARN_LEVEL;
 
 Wiz.LoggerManager.prototype._mozillaLogger = null;
 Wiz.LoggerManager.prototype._fileLogger = null;

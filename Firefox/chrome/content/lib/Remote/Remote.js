@@ -34,12 +34,16 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 		postParams.password = password;
 		var success = function (respJson) {
 			//登陆成功后，集中处理需要的信息
+			if (respJson.code != 200) {
+				callError(respJson);
+				return;
+			}
 			try {
 				Wiz.logger.debug('Wiz.Remote.clientLogin() Success : ' + JSON.stringify(respJson));
 
 				Wiz.saveAuthCookie(username + '*' + password, rememberMe);
 				Wiz.saveTokenCookie(respJson.token);
-				Wiz.context.kb_guid = respJson.kb_guid;
+				Wiz.saveKbGuidCookie(respJson.kb_guid);
 				//每次登陆成功后，重新写入now_user,方便以后显示或查看
 				Wiz.prefStorage.set(Wiz.Pref.NOW_USER, username, 'char');
 				callSuccess(respJson);
@@ -180,7 +184,6 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			}
 		},
 			success = function (info) {
-				alert('ok');
 				Wiz.logger.debug('Wiz.Remote.postDocument() callsuccess: ' + info);
 				Wiz.notificator.showClipSuccess(docInfo.title);
 			};
@@ -189,6 +192,15 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			return encodeURIComponent(str).replace(regexp, '+');
 		}
 
+		function genGuid() {
+			function S4() {
+		    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+		  }
+		  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+		}
+
+
+		var docGuid = genGuid();
 		try {
 			Wiz.logger.debug('Wiz.Remote.postDocument start token = ' + Wiz.context.token);
 			var regexp = /%20/g,
@@ -204,14 +216,15 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			if (!category) {
 				category = '/My Notes/';
 			}
+			Wiz.logger.debug('Wiz.context.kb_guid:1 ' + Wiz.context.kbGuid);
 
 			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
 								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
-			var createData = 'bTemp=true&api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kb_guid )
+			var createData = 'temp=true&api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kbGuid )
 								+ '&document_guid=' + getReplaceStr(docGuid);
 
 
-			var updateData = 'api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kb_guid )
+			var updateData = 'api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(Wiz.context.kbGuid )
 								+ '&document_guid=' + getReplaceStr(docGuid) + '&document_body=' + getReplaceStr(body) + '&document_category=' + getReplaceStr(category)
 								+ '&document_title=' + title;
 			
@@ -219,11 +232,20 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 				type : 'POST',
 				url : 'http://www.wiz.cn/api/document/data',
 				data : createData,
-				success : success,
+				success : function(resp) {
+					if (resp.code == 200) {
+						$.ajax({
+							type : 'PUT',
+							url : 'http://www.wiz.cn/api/document/data',
+							data : updateData,
+							success : success,
+							error : error
+						});
+					}
+				},
 				error : error
 			});
-			// Wiz.logger.debug('postDocument requestData: ' + requestData);
-			// ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
+			Wiz.logger.debug('postDocument requestData: ' + requestData);
 		} catch (err) {
 			Wiz.logger.error('Wiz.Remote.postDocument() Error : ' + err);
 		}

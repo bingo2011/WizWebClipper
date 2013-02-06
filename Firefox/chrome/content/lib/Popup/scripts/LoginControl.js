@@ -94,5 +94,5 @@ Wiz.LoginControl.prototype.onLoginSuccess = function (respJson) {
 };
 
 Wiz.LoginControl.prototype.onLoginError = function (err) {
-	Wiz.PopupView.showLoginError(err);
+	Wiz.PopupView.showLoginError(err.message);
 };

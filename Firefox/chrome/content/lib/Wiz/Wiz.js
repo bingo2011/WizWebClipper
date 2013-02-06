@@ -112,6 +112,21 @@ Wiz.removeTokenCookie = function () {
     var cookie = Wiz.cookieManager.remove(Wiz.AUTH_COOKIE_URL, 'auth-token');  
 };
 
+Wiz.saveKbGuidCookie = function (kbGuid) {
+    Wiz.cookieManager.set(Wiz.AUTH_COOKIE_URL, 'auth-kbguid', kbGuid, Wiz.Default.TOKEN_EXPIRE_SEC);
+};
+
+Wiz.getKbGuidCookie = function () {
+    var cookie = Wiz.cookieManager.get(Wiz.AUTH_COOKIE_URL, 'auth-kbguid');  
+    if (cookie && cookie.length > 0) {
+        return cookie[0];
+    }
+    return null;
+};
+Wiz.removeKbGuidCookie = function () {
+    var cookie = Wiz.cookieManager.remove(Wiz.AUTH_COOKIE_URL, 'auth-kbguid');  
+};
+
 Wiz.removeAuthCookie = function () {
     Wiz.cookieManager.remove(Wiz.AUTH_COOKIE_URL, Wiz.AUTHENTICATION_NAME);
 };
