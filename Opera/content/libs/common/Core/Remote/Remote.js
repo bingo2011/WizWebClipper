@@ -35,9 +35,11 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 		var success = function (respJson) {
 			//登陆成功后，集中处理需要的信息
 			try {
+				console.error(respJson);
 				//把user信息加入到Wiz上下文中
 				Wiz.context.authority = username + '*' + password;
 				Wiz.context.token = respJson.token;
+				Wiz.context.kbGuid = respJson.kb_guid;
 				Wiz.context.userId = username;
 
 				if (rememberMe === true) {
@@ -54,6 +56,12 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 			}
 		};
 		var	callError = callError || function(error){
+			console.error('error');
+			console.error(error.statusText);
+			// var key;
+			// for (key in error) {
+			// 	console.error(key);
+			// }
 			Wiz.background.sendLoginError(error);
 		};
 
@@ -84,15 +92,29 @@ Wiz.Remote.prototype.getAllCategory = function (callSuccess, callError) {
 		if (token !== null) {
 			var postParams = Wiz.Remote.getPostObj();
 			postParams.token = token;
-			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], success, callError);
+
+			$.ajax({
+				type : 'GET',
+				url : 'http://www.wiz.cn/api/category/all',
+				data : postParams,
+				success : success,
+				error : callError
+			});
+			// xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], success, callError);
 		}	
 	} catch (err) {
 		console.error('Wiz.Remote.getAllCategory() Error : ' + err);
 	}
 };
 
+/**
+ * 服务器端改动，临时解决方案
+ * @param  {[type]} docInfo [description]
+ * @return {[type]}         [description]
+ */
 Wiz.Remote.prototype.postDocument = function (docInfo) {
 	var token = Wiz.context.token;
+	var kbGuid = Wiz.context.kbGuid;
 	if (token !== null) {
 		var error = function (err) {
 			try {
@@ -117,7 +139,19 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
         	opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'saved'});
 			// Wiz.notificator.showClipSuccess(docInfo.title);
 		};
+
+		var getReplaceStr = function (str) {
+			var regexp = /%20/g;
+			return encodeURIComponent(str).replace(regexp, '+');
+		};
+		var genGuid = function () {
+			function S4() {
+			    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+			}
+		  	return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+		};
 		try {
+			var docGuid = genGuid();
 			var regexp = /%20/g,
 				title = docInfo.title,
 				category = docInfo.category,
@@ -131,10 +165,34 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			if (!category) {
 				category = '/My Notes/';
 			}
+			var createData = 'temp=true&api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(kbGuid)
+								+ '&document_guid=' + getReplaceStr(docGuid);
 
-			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
-								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
-			ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
+
+			var updateData = 'api_version=3&client_type=webclip_chrome&token=' + getReplaceStr(token) + '&kb_guid=' + getReplaceStr(kbGuid)
+								+ '&document_guid=' + getReplaceStr(docGuid) + '&document_body=' + getReplaceStr(body) + '&document_category=' + getReplaceStr(category)
+								+ '&document_title=' + title;
+			// var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
+			// 					+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
+			// ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
+			
+		$.ajax({
+				type : 'POST',
+				url : 'http://www.wiz.cn/api/document/data',
+				data : createData,
+				success : function(resp) {
+					if (resp.code == 200) {
+						$.ajax({
+							type : 'PUT',
+							url : 'http://www.wiz.cn/api/document/data',
+							data : updateData,
+							success : success,
+							error : error
+						});
+					}
+				},
+				error : error
+			});
 		} catch (err) {
 			console.error('Wiz.Remote.postDocument() Error : ' + err);
 		}

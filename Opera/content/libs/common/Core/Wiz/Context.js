@@ -9,12 +9,15 @@ Wiz.Context = function () {
 	this.__defineSetter__('userId', this.setUserId);
 	this.__defineGetter__('authority', this.getAuthority);
 	this.__defineSetter__('authority', this.setAuthority);
+	this.__defineGetter__('kbGuid', this.getKbGuid);
+	this.__defineSetter__('kbGuid', this.setKbGuid);
 
 };
 
 Wiz.Context.prototype._token = '';
 Wiz.Context.prototype._userId = '';
 Wiz.Context.prototype._authority = '';//userid + '*' + md5.password
+Wiz.Context.prototype._kbGuid = '';
 
 Wiz.Context.prototype.getToken = function () {
 	//不能返回null，xmlrpc会报错
@@ -57,4 +60,14 @@ Wiz.Context.prototype.setAuthority = function (authority) {
 		return;;
 	}
 	this._authority = authority;
+};
+
+Wiz.Context.prototype.getKbGuid = function () {
+	return this._kbGuid;
+};
+
+Wiz.Context.prototype.setKbGuid = function (kbGuid) {
+	if (typeof kbGuid === 'string') {
+		this._kbGuid = kbGuid;
+	}
 };
