@@ -267,12 +267,14 @@ function wiz_portRequestCategoryAjax(port) {
 	var params = {
 		client_type : 'webclip_chrome',
 		api_version : 3,
-		token : Wiz_Context.token
+		token : Wiz_Context.token,
+		kb_guid: Wiz_Context.kbGuid
 	};
 	var callbackSuccess = function (responseJSON) {
 		try {
 			console.log('wiz_portRequestCategoryAjax callbackSuccess');
-			var categoryStr = responseJSON.categories;
+			var categoryList = responseJSON.list;
+			var categoryStr = getCategoryStrFromList(categoryList);
 			setLocalCategory(categoryStr);
 			if (port) {
 				port.postMessage(categoryStr);
@@ -300,6 +302,19 @@ function wiz_portRequestCategoryAjax(port) {
 		error : callbackError
 	});
 	// xmlrpc(Wiz_Context.xmlUrl, 'category.getAll', [params], callbackSuccess, callbackError);
+}
+
+function getCategoryStrFromList(categoryList) {
+	var length = categoryList.length;
+	var categoryStr = '';
+	for (var i=0; i<length; i++) {
+		if (i === 0) {
+			categoryStr = categoryList[i].location;
+		} else {
+			categoryStr = categoryStr + '*' + categoryList[i].location;
+		}
+	}
+	return categoryStr;
 }
 
 /**
